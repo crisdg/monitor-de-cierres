@@ -1,4 +1,4 @@
-//import npm packages
+require("dotenv").config(); //import npm packages
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -9,8 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 //conecta a mongo
-const MONGODB_URI =
-  "mongodb+srv://cgomez:Cgomez.1988@monitordb.osbrc.mongodb.net/monitor?retryWrites=true&w=majority";
+const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI || "mongodb://localhost/monitor", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
