@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import clienteAxios from "./config/axios";
+import Monitor from "./components/monitor";
 
 function App() {
   const [zonas, setZonas] = useState([]);
@@ -23,7 +24,7 @@ function App() {
   }, [consultar]);
   return (
     <div className="container">
-      <h2>Monitor</h2>
+      <Monitor data={zonas} />
     </div>
   );
 }
