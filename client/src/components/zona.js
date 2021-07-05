@@ -20,7 +20,7 @@ const Zona = (props) => {
 
   const updateData = async (e) => {
     e.preventDefault();
-    props.setConsultar(true);
+
     const url = `/zonas/${props.data._id}`;
     setData(checkData);
     await clienteAxios
@@ -31,7 +31,7 @@ const Zona = (props) => {
       .catch((error) => {
         console.log(error);
       });
-
+    props.setConsultar(true);
     props.history.push("/");
     return null;
   };
