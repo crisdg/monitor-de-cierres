@@ -1,5 +1,5 @@
-import react, { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { useState } from "react";
+import { withRouter } from "react-router-dom";
 import clienteAxios from "../config/axios";
 import "../App.css";
 const Zona = (props) => {

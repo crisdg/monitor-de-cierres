@@ -23,6 +23,11 @@ mongoose.connection.on("conected", () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//llamar a build de cliente
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 //http request logger
 app.use(morgan("tiny"));
 
