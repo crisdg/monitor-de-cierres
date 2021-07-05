@@ -43,7 +43,12 @@ function App() {
           exact
           path="/"
           component={() => (
-            <Monitor data={zonasFilter} date={date} myDate={myDate} />
+            <Monitor
+              data={zonasFilter}
+              date={date}
+              myDate={myDate}
+              setConsultar={setConsultar}
+            />
           )}
         />
         <Route

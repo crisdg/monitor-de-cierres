@@ -3,6 +3,9 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function TablaMonitor(props) {
+  const refrescarConsulta = (props) => {
+    props.setConsultar = true;
+  };
   return (
     <div className="container">
       <input
@@ -13,6 +16,9 @@ function TablaMonitor(props) {
         onChange={props.myDate}
         value={props.date}
       />
+      <button className="refresh" onClick={refrescarConsulta}>
+        Refrescar
+      </button>
       <Table striped bordered hover className="monitor--table">
         <thead className="monitor--table-header">
           <th>Fecha</th>
