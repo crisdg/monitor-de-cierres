@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-//http request logger
+//http request lo
 app.use(morgan("tiny"));
 
 //habilitar routing
