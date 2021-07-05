@@ -20,6 +20,9 @@ mongoose.connection.on("conected", () => {
   console.log("mongoose conectado");
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 //http request logger
 app.use(morgan("tiny"));
 

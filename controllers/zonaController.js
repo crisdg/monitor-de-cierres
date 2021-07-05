@@ -8,6 +8,7 @@ exports.nuevaZona = async (req, res, next) => {
   // TODO: crear zona
   try {
     await zona.save();
+    console.log(zona, "desde save");
     res.json({ mensaje: "zona agregada correctamente" });
   } catch (error) {
     console.log(error);
@@ -19,7 +20,6 @@ exports.obtenerZonas = async (req, res, next) => {
   try {
     const zonas = await Zona.find({});
     res.json(zonas);
-    console.log(res);
   } catch (error) {
     console.log(error);
     next();
@@ -31,7 +31,6 @@ exports.obtenerZona = async (req, res, next) => {
   try {
     const zona = await Zona.findById(req.params.id);
     res.json(zona);
-    console.log(res);
   } catch (error) {
     console.log(error);
     next();

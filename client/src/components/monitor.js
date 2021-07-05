@@ -41,17 +41,27 @@ function TablaMonitor(props) {
                   {zona.facturacion === true ? "OK" : "X"}
                 </td>
                 <td>
-                  <div className="monitor--cierre-button"></div>
+                  <div className="monitor--cierre-button">
+                    <Link to={`/zona/${zona._id}`} data={zona}>
+                      Cierre
+                    </Link>
+                  </div>
                 </td>
                 <td>
-                  <div className="monitor--eliminar-button"></div>
+                  <div className="monitor--eliminar-button">
+                    <Link to={`/zona/${zona._id}`} data={zona}>
+                      Cierre
+                    </Link>
+                  </div>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </Table>
-      <div className="monitor--agregar-button"></div>
+      <div className="monitor--agregar-button">
+        <Link to={`/nueva`}>+</Link>
+      </div>
     </div>
   );
 }

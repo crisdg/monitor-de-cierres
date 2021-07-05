@@ -24,10 +24,6 @@ const ZonaSchema = new Schema({
     type: Boolean,
     trim: true,
   },
-  prioridad: {
-    type: String,
-    trim: true,
-  },
 });
 
 module.exports = mongoose.model("Zona", ZonaSchema);
