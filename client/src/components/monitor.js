@@ -3,8 +3,8 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function TablaMonitor(props) {
-  const refrescarConsulta = (props) => {
-    props.setConsultar = true;
+  const refrescarConsulta = () => {
+    props.setConsultar(true);
   };
   return (
     <div className="container">
