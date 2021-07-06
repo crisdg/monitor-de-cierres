@@ -22,19 +22,15 @@
 }
 
 .zona-form--container {
-  width: 33vw;
-  height: 40vh;
   display: flex;
   align-content: center;
   justify-items: center;
-
   background-color: #ea80fc;
   color: #000000;
 }
 
 .zona-form--form {
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
@@ -127,4 +123,25 @@
 .monitor--eliminar-button a:hover {
   text-decoration: none;
   color: white;
+}
+.refresh {
+  width: 80px;
+  height: 40px;
+  background-color: lawngreen;
+  border-radius: 20px;
+}
+
+.container.d-flex {
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header--refresh-button {
+  width: 20%;
+  display: flex;
+  justify-content: center;
 }

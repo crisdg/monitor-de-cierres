@@ -51,7 +51,7 @@ const Zona = (props) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="zona-form--container">
         <form method="post" className="zona-form--form">
           <div className="zona-form--items">
@@ -68,7 +68,6 @@ const Zona = (props) => {
               onChange={(e) => {
                 checkData.tildado = e.target.checked;
                 setData(checkData);
-                console.log(checkData);
               }}
             ></input>
             <br />
@@ -83,8 +82,6 @@ const Zona = (props) => {
               onChange={(e) => {
                 checkData.administracion = e.target.checked;
                 setData(checkData);
-
-                console.log(checkData);
               }}
             ></input>
             <br />

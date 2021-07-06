@@ -7,18 +7,25 @@ function TablaMonitor(props) {
     props.setConsultar(true);
   };
   return (
-    <div className="container">
-      <input
-        type="date"
-        name="fechaFiltro"
-        id="fechaFiltro"
-        className="monitor--filtro"
-        onChange={props.myDate}
-        value={props.date}
-      />
-      <button className="refresh" onClick={refrescarConsulta}>
-        Refrescar
-      </button>
+    <div className="container d-flex">
+      <div className="header">
+        <div className="header--date-imput">
+          <input
+            type="date"
+            name="fechaFiltro"
+            id="fechaFiltro"
+            className="monitor--filtro"
+            onChange={props.myDate}
+            value={props.date}
+          />
+        </div>
+        <div className="header--refresh-button">
+          <button className="refresh" onClick={refrescarConsulta}>
+            Refrescar
+          </button>
+        </div>
+      </div>
+
       <Table striped bordered hover className="monitor--table">
         <thead className="monitor--table-header">
           <th>Fecha</th>
