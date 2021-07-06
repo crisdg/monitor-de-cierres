@@ -51,7 +51,7 @@ const Zona = (props) => {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid zona">
       <div className="zona-form--container">
         <form method="post" className="zona-form--form">
           <div className="zona-form--items">
@@ -117,7 +117,12 @@ const Zona = (props) => {
           </div>
         </form>
       </div>
-      <button onClick={deleteZona}>Eliminar zona</button>
+      <button
+        className="monitor--eliminar-button container-fluid"
+        onClick={deleteZona}
+      >
+        Eliminar zona
+      </button>
     </div>
   );
 };
