@@ -26,7 +26,7 @@
   display: flex;
   align-content: center;
   justify-items: center;
-  background-color: #ea80fc;
+  background-color: #eceff1;
   color: #000000;
 }
 
@@ -35,10 +35,62 @@
   align-items: center;
   justify-content: center;
 }
-.zona-form--items .check {
-  width: 20px;
-  height: 20px;
+.zona-form--items input.check {
   justify-self: flex-end;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+
+.zona-form--items input:hover {
+  background: #9faab7;
+}
+
+.zona-form--items input:checked {
+  background: #40e0d0;
+}
+
+.zona-form--items input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  content: "✔";
+  display: inline-block;
+  font-size: 26.66667px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+}
+
+.zona-form--items input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  color: #fff;
+  content: "";
+  display: block;
+  position: relative;
+  z-index: 100;
 }
 
 .zona-form--items label {

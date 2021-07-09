@@ -2,9 +2,17 @@ import { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clienteAxios from "../config/axios";
 import "../App.css";
+import swal from "sweetalert";
 const Zona = (props) => {
   const [data, setData] = useState();
+  const [tildadoCheck, setTildadoCheck] = useState(props.data.tildado);
+  const [admCheck, setAdmCheck] = useState(props.data.administracion);
+  const [factCheck, setFactCheck] = useState(props.data.facturacion);
 
+  if (!props.data) {
+    props.history.push("/");
+    return null;
+  }
   const checkData = {
     fecha: props.data.fecha,
     zona: props.data.zona,
@@ -13,27 +21,28 @@ const Zona = (props) => {
     facturacion: props.data.facturacion,
   };
 
-  if (!props.data) {
-    props.history.push("/");
-    return null;
-  }
-
   const updateData = async (e) => {
     e.preventDefault();
 
     const url = `/zonas/${props.data._id}`;
-    setData(checkData);
-    await clienteAxios
-      .put(url, data)
-      .then((res) => {
-        console.log(res, "modificado");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    props.setConsultar(true);
-    props.history.push("/");
-    return null;
+    if (tildadoCheck === false) {
+      swal("error!", "Falta cierre de tildado!", "error");
+    } else if (tildadoCheck === true && admCheck === false) {
+      console.log("falta cierre de administracion");
+    } else {
+      setData(checkData);
+      await clienteAxios
+        .put(url, data)
+        .then((res) => {
+          console.log(res, "modificado");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      props.setConsultar(true);
+      props.history.push("/");
+      return null;
+    }
   };
 
   const volver = (e) => {
@@ -68,6 +77,7 @@ const Zona = (props) => {
               onChange={(e) => {
                 checkData.tildado = e.target.checked;
                 setData(checkData);
+                setTildadoCheck(true);
               }}
             ></input>
             <br />
@@ -82,6 +92,7 @@ const Zona = (props) => {
               onChange={(e) => {
                 checkData.administracion = e.target.checked;
                 setData(checkData);
+                setAdmCheck(true);
               }}
             ></input>
             <br />
@@ -97,7 +108,6 @@ const Zona = (props) => {
               onChange={(e) => {
                 checkData.facturacion = e.target.checked;
                 setData(checkData);
-                console.log(checkData);
               }}
             ></input>
             <br />

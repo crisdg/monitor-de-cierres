@@ -63,7 +63,7 @@ function TablaMonitor(props) {
                 <td>
                   <div className="monitor--eliminar-button">
                     <Link to={`/zona/${zona._id}`} data={zona}>
-                      Cierre
+                      Eliminar
                     </Link>
                   </div>
                 </td>

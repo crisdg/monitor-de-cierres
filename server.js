@@ -10,11 +10,21 @@ const PORT = process.env.PORT || 8080;
 
 //conecta a mongo
 const MONGODB_URI = process.env.MONGODB_URI;
-mongoose.connect(MONGODB_URI || "mongodb://localhost/monitor", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: true,
-});
+const MONGO_URI_DEV = process.env.MONGO_URI;
+
+if (process.env.NODE_ENV === "development") {
+  mongoose.connect(MONGO_URI_DEV, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: true,
+  });
+} else {
+  mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: true,
+  });
+}
 
 mongoose.connection.on("conected", () => {
   console.log("mongoose conectado");
