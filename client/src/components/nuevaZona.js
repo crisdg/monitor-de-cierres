@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clienteAxios from "../config/axios";
+import swal from "sweetalert";
 function NuevaZona(props) {
   const [zona, setZona] = useState({});
 
@@ -13,10 +14,10 @@ function NuevaZona(props) {
   const guardarZona = (e) => {
     e.preventDefault();
     setZona(nuevaZona);
+
     clienteAxios
       .post("/zonas", zona)
       .then((res) => {
-        console.log(zona, "desde guardar");
         props.setConsultar(true);
         props.history.push("/");
       })
@@ -30,6 +31,7 @@ function NuevaZona(props) {
     e.preventDefault();
     nuevaZona.zona = e.target.value;
     setZona(nuevaZona);
+    console.log(nuevaZona.zona);
   };
 
   const handleDate = (e) => {
@@ -68,13 +70,17 @@ function NuevaZona(props) {
           onChange={handleDate}
         />
         <label htmlFor="zona">Zona</label>
-        <input type="text" name="zona" id="zona" onChange={handleChange} />
         <input
-          type="button"
-          value="Guardar"
-          id="guardar"
-          onClick={guardarZona}
+          type="text"
+          name="zona"
+          id="zona"
+          minLength="3"
+          maxLength="3"
+          pattern="^[0-9]+"
+          onChange={handleChange}
+          required
         />
+        <input type="submit" value="Guardar" id="guardar" />
         <input type="button" value="volver" id="volver" onClick={handleBack} />
       </form>
     </div>
