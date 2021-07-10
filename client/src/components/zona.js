@@ -8,6 +8,9 @@ const Zona = (props) => {
   const [tildadoCheck, setTildadoCheck] = useState(props.data.tildado);
   const [admCheck, setAdmCheck] = useState(props.data.administracion);
   const [factCheck, setFactCheck] = useState(props.data.facturacion);
+  const [tildadoDisabled, setTildadoDisabled] = useState(props.data.tildado);
+  const [admDisabled, setAdmDisabled] = useState(props.data.administracion);
+  const [factDisabled, setFactDisabled] = useState(props.data.facturacion);
 
   if (!props.data) {
     props.history.push("/");
@@ -25,11 +28,8 @@ const Zona = (props) => {
     e.preventDefault();
 
     const url = `/zonas/${props.data._id}`;
-    if (tildadoCheck === false) {
-      swal("error!", "Falta cierre de tildado!", "error");
-    } else if (tildadoCheck === true && admCheck === false) {
-      console.log("falta cierre de administracion");
-    } else {
+
+    if (tildadoCheck === true && admCheck === false && factCheck === false) {
       setData(checkData);
       await clienteAxios
         .put(url, data)
@@ -40,8 +40,46 @@ const Zona = (props) => {
           console.log(error);
         });
       props.setConsultar(true);
+      swal("Cierre realizado!", "ok para seguir!", "success");
       props.history.push("/");
       return null;
+    } else if (
+      tildadoCheck === true &&
+      admCheck === true &&
+      factCheck === false
+    ) {
+      await clienteAxios
+        .put(url, data)
+        .then((res) => {
+          console.log(res, "modificado");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      props.setConsultar(true);
+      swal("Cierre realizado!", "ok para seguir!", "success");
+      props.history.push("/");
+      return null;
+    } else if (
+      tildadoCheck === true &&
+      admCheck === true &&
+      factCheck === true
+    ) {
+      await clienteAxios
+        .put(url, data)
+        .then((res) => {
+          console.log(res, "modificado");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      props.setConsultar(true);
+      swal("Cierre realizado!", "ok para seguir!", "success");
+      props.history.push("/");
+      return null;
+    } else {
+      swal("error!", "Falta cierre anterior!", "error");
     }
   };
 
@@ -73,11 +111,20 @@ const Zona = (props) => {
               id="tildado"
               name="tildado"
               defaultChecked={props.data.tildado ? true : false}
-              disabled={props.data.tildado}
+              disabled={tildadoDisabled}
               onChange={(e) => {
                 checkData.tildado = e.target.checked;
+
+                if (tildadoCheck === false) {
+                  setTildadoCheck(true);
+                  setAdmDisabled(true);
+                  setFactDisabled(true);
+                } else {
+                  setTildadoCheck(false);
+                  setAdmDisabled(false);
+                  setFactDisabled(false);
+                }
                 setData(checkData);
-                setTildadoCheck(true);
               }}
             ></input>
             <br />
@@ -88,11 +135,20 @@ const Zona = (props) => {
               value=""
               name="administracion"
               defaultChecked={props.data.administracion}
-              disabled={props.data.administracion}
+              disabled={admDisabled}
               onChange={(e) => {
                 checkData.administracion = e.target.checked;
+
+                if (admCheck === false) {
+                  setAdmCheck(true);
+                  setTildadoDisabled(true);
+                  setFactDisabled(true);
+                } else {
+                  setAdmCheck(false);
+                  setTildadoDisabled(false);
+                  setFactDisabled(false);
+                }
                 setData(checkData);
-                setAdmCheck(true);
               }}
             ></input>
             <br />
@@ -104,9 +160,19 @@ const Zona = (props) => {
               id="facturacion"
               name="facturacion"
               defaultChecked={props.data.facturacion}
-              disabled={props.data.facturacion}
+              disabled={factDisabled}
               onChange={(e) => {
                 checkData.facturacion = e.target.checked;
+
+                if (factCheck === false) {
+                  setFactCheck(true);
+                  setTildadoDisabled(true);
+                  setAdmDisabled(true);
+                } else {
+                  setFactCheck(false);
+                  setAdmDisabled(false);
+                  setTildadoDisabled(false);
+                }
                 setData(checkData);
               }}
             ></input>
