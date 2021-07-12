@@ -12,7 +12,9 @@ function App() {
   const [consultar, setConsultar] = useState(true);
   const [zonasFilter, setZonasFilter] = useState([]);
   const [date, setDate] = useState("");
+
   useEffect(() => {
+    console.log("entra a useEffect");
     if (consultar) {
       const consultarZonas = () => {
         clienteAxios
@@ -55,13 +57,11 @@ function App() {
           exact
           path="/zona/:id"
           render={(props) => {
-            const zona = zonas.filter(
-              (item) => item._id === props.match.params.id
-            );
-
             return (
               <Zona
-                data={zona[0]}
+                data={zonas.filter(
+                  (item) => item._id === props.match.params.id
+                )}
                 id={props.match.params.id}
                 setConsultar={setConsultar}
               />

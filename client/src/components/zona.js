@@ -1,33 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import clienteAxios from "../config/axios";
 import "../App.css";
 import swal from "sweetalert";
 const Zona = (props) => {
-  const [data, setData] = useState();
-  const [tildadoCheck, setTildadoCheck] = useState(props.data.tildado);
-  const [admCheck, setAdmCheck] = useState(props.data.administracion);
-  const [factCheck, setFactCheck] = useState(props.data.facturacion);
-  const [tildadoDisabled, setTildadoDisabled] = useState(props.data.tildado);
-  const [admDisabled, setAdmDisabled] = useState(props.data.administracion);
-  const [factDisabled, setFactDisabled] = useState(props.data.facturacion);
+  const [zona, setZona] = useState({});
+  const [data, setData] = useState({});
+  const [tildadoCheck, setTildadoCheck] = useState();
+  const [admCheck, setAdmCheck] = useState();
+  const [factCheck, setFactCheck] = useState();
+  const [tildadoDisabled, setTildadoDisabled] = useState();
+  const [admDisabled, setAdmDisabled] = useState();
+  const [factDisabled, setFactDisabled] = useState();
+  //verifica que haya props para evitar error en el render
+  useEffect(() => {
+    const getData = async () => {
+      const url = `/zonas/${props.id}`;
+      await clienteAxios
+        .get(url)
+        .then((response) => {
+          console.log(response);
+          setZona(response.data);
+          setTildadoCheck(response.data.tildado);
+          setAdmCheck(response.data.administracion);
+          setFactCheck(response.data.facturacion);
+          setTildadoDisabled(response.data.tildado);
+          setAdmDisabled(response.data.administracion);
+          setFactCheck(response.data.facturacion);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
 
-  if (!props.data) {
+    getData();
+  }, []);
+
+  if (!props.data || props.data === undefined) {
     props.history.push("/");
     return null;
   }
-  const checkData = {
-    fecha: props.data.fecha,
-    zona: props.data.zona,
-    tildado: props.data.tildado,
-    administracion: props.data.administracion,
-    facturacion: props.data.facturacion,
-  };
 
+  //construye objeto modelo para mutar y enviar a db segun cambien los checkbox
+  const checkData = {
+    fecha: zona.fecha,
+    zona: zona.zona,
+    tildado: zona.tildado,
+    administracion: zona.administracion,
+    facturacion: zona.facturacion,
+  };
+  //actualiza la info a la db, verifica la combinaciones de checkbox mediante If
   const updateData = async (e) => {
     e.preventDefault();
 
-    const url = `/zonas/${props.data._id}`;
+    const url = `/zonas/${props.id}`;
 
     if (tildadoCheck === true && admCheck === false && factCheck === false) {
       setData(checkData);
@@ -89,8 +115,9 @@ const Zona = (props) => {
     props.history.push("/");
   };
 
+  //elmina el registro actual de la db
   const deleteZona = async () => {
-    const url = `/zonas/${props.data._id}`;
+    const url = `/zonas/${props.id}`;
 
     await clienteAxios.delete(url).then((res) => console.log(res));
     props.history.push("/");
@@ -102,7 +129,7 @@ const Zona = (props) => {
       <div className="zona-form--container">
         <form method="post" className="zona-form--form">
           <div className="zona-form--items">
-            <h2>Zona {props.data.zona} </h2>
+            <h2>Zona {zona.zona} </h2>
             <hr />
             <label for="tildado">Cierre tildado</label>
             <input
@@ -110,7 +137,7 @@ const Zona = (props) => {
               type="checkbox"
               id="tildado"
               name="tildado"
-              defaultChecked={props.data.tildado ? true : false}
+              defaultChecked={zona.tildado}
               disabled={tildadoDisabled}
               onChange={(e) => {
                 checkData.tildado = e.target.checked;
@@ -134,7 +161,7 @@ const Zona = (props) => {
               type="checkbox"
               value=""
               name="administracion"
-              defaultChecked={props.data.administracion}
+              defaultChecked={zona.administracion}
               disabled={admDisabled}
               onChange={(e) => {
                 checkData.administracion = e.target.checked;
@@ -159,7 +186,7 @@ const Zona = (props) => {
               value=""
               id="facturacion"
               name="facturacion"
-              defaultChecked={props.data.facturacion}
+              defaultChecked={zona.facturacion}
               disabled={factDisabled}
               onChange={(e) => {
                 checkData.facturacion = e.target.checked;
