@@ -198,3 +198,22 @@
   display: flex;
   justify-content: center;
 }
+.zona-form--input {
+  width: 30vw;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 1.3rem;
+}
+
+.zona-form--container label {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.zona-form--container .form-btn {
+  background-color: #7c4dff;
+  height: 7vh;
+  border-radius: 4px;
+  color: #ffffff;
+  margin-top: 2vh;
+}

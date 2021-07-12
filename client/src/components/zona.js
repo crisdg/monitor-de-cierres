@@ -12,6 +12,7 @@ const Zona = (props) => {
   const [tildadoDisabled, setTildadoDisabled] = useState();
   const [admDisabled, setAdmDisabled] = useState();
   const [factDisabled, setFactDisabled] = useState();
+
   //verifica que haya props para evitar error en el render
   useEffect(() => {
     const getData = async () => {
@@ -159,7 +160,7 @@ const Zona = (props) => {
             <input
               className="check"
               type="checkbox"
-              value=""
+              value={zona.administracion}
               name="administracion"
               defaultChecked={zona.administracion}
               disabled={admDisabled}
