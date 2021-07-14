@@ -5,6 +5,7 @@ import clienteAxios from "./config/axios";
 import Monitor from "./components/monitor";
 import NuevaZona from "./components/nuevaZona";
 import Zona from "./components/zona";
+import Login from "./components/login";
 import "./App.css";
 
 function App() {
@@ -72,6 +73,13 @@ function App() {
           exact
           path="/nueva"
           render={(props) => <NuevaZona setConsultar={setConsultar} />}
+        />
+        <Route
+          exact
+          path="/login"
+          component={() => {
+            return <Login />;
+          }}
         />
       </Switch>
     </Router>
