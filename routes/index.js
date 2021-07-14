@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const zonaController = require("../controllers/zonaController");
+const usersController = require("../controllers/usersController");
 
 module.exports = function () {
   //agregar zona via POST
@@ -13,6 +14,11 @@ module.exports = function () {
   router.put("/zonas/:id", zonaController.actualizarZona);
   //eliminar registro
   router.delete("/zonas/:id", zonaController.eliminarZona);
+
+  //obtener usuarios
+  router.get("/users", usersController.obtenerUsers);
+  //crear usuario
+  router.post("/users", usersController.nuevoUser);
 
   return router;
 };
