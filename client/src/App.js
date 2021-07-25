@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import clienteAxios from "./config/axios";
 import Monitor from "./components/monitor";
 import NuevaZona from "./components/nuevaZona";
 import Zona from "./components/zona";
 import Login from "./components/login";
+import RegisterUser from "./components/registerUser";
+import NavBar from "./components/navbar";
+import { AuthContextProvider } from "./context/authContext";
+
 import "./App.css";
 
 function App() {
@@ -13,9 +16,9 @@ function App() {
   const [consultar, setConsultar] = useState(true);
   const [zonasFilter, setZonasFilter] = useState([]);
   const [date, setDate] = useState("");
+  const [userName, setUserName] = useState(window.localStorage.getItem("data"));
 
   useEffect(() => {
-    console.log("entra a useEffect");
     if (consultar) {
       const consultarZonas = () => {
         clienteAxios
@@ -33,56 +36,77 @@ function App() {
 
       setZonasFilter(filtrado);
     }
-  }, [consultar, zonasFilter]);
+  }, [consultar, zonasFilter, userName]);
 
   const myDate = (e) => {
     setDate(e.target.value);
+
     setConsultar(true);
   };
+
   return (
-    <Router>
-      <Switch>
-        <Route
-          exact
-          path="/"
-          component={() => (
-            <Monitor
-              data={zonasFilter}
-              date={date}
-              myDate={myDate}
-              setConsultar={setConsultar}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/zona/:id"
-          render={(props) => {
-            return (
-              <Zona
-                data={zonas.filter(
-                  (item) => item._id === props.match.params.id
-                )}
-                id={props.match.params.id}
-                setConsultar={setConsultar}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path="/nueva"
-          render={(props) => <NuevaZona setConsultar={setConsultar} />}
-        />
-        <Route
-          exact
-          path="/login"
-          component={() => {
-            return <Login />;
-          }}
-        />
-      </Switch>
-    </Router>
+    <AuthContextProvider>
+      <Router>
+        <NavBar setUserName={setUserName} user={userName} />
+
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              if (!userName || userName === null) {
+                return <Login setUserName={setUserName} />;
+              } else {
+                return (
+                  <Monitor
+                    data={zonasFilter}
+                    date={date}
+                    myDate={myDate}
+                    setConsultar={setConsultar}
+                  />
+                );
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/zona/:id"
+            render={(props) => {
+              return (
+                <Zona
+                  data={zonas.filter(
+                    (item) => item._id === props.match.params.id
+                  )}
+                  id={props.match.params.id}
+                  setConsultar={setConsultar}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/nueva"
+            render={(props) => <NuevaZona setConsultar={setConsultar} />}
+          />
+          <Route
+            exact
+            path="/login"
+            render={(props) => {
+              return <Login />;
+            }}
+          />
+
+          <Route exact path="/logout" />
+          <Route
+            exact
+            path="/registrar"
+            component={() => {
+              return <RegisterUser />;
+            }}
+          />
+        </Switch>
+      </Router>
+    </AuthContextProvider>
   );
 }
 

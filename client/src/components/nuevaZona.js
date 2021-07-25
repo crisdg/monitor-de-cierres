@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clienteAxios from "../config/axios";
-import swal from "sweetalert";
+
 function NuevaZona(props) {
   const [zona, setZona] = useState({});
 
@@ -31,7 +31,6 @@ function NuevaZona(props) {
     e.preventDefault();
     nuevaZona.zona = e.target.value;
     setZona(nuevaZona);
-    console.log(nuevaZona.zona);
   };
 
   const handleDate = (e) => {

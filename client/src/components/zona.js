@@ -20,7 +20,6 @@ const Zona = (props) => {
       await clienteAxios
         .get(url)
         .then((response) => {
-          console.log(response);
           setZona(response.data);
           setTildadoCheck(response.data.tildado);
           setAdmCheck(response.data.administracion);
@@ -132,7 +131,7 @@ const Zona = (props) => {
           <div className="zona-form--items">
             <h2>Zona {zona.zona} </h2>
             <hr />
-            <label for="tildado">Cierre tildado</label>
+            <label htmlFor="tildado">Cierre tildado</label>
             <input
               className="check"
               type="checkbox"
@@ -156,7 +155,7 @@ const Zona = (props) => {
               }}
             ></input>
             <br />
-            <label for="administracion">Cierre administrativo </label>
+            <label htmlFor="administracion">Cierre administrativo </label>
             <input
               className="check"
               type="checkbox"
@@ -180,7 +179,7 @@ const Zona = (props) => {
               }}
             ></input>
             <br />
-            <label for="facturacion">Cierre facturacion </label>
+            <label htmlFor="facturacion">Cierre facturacion </label>
             <input
               className="check"
               type="checkbox"
