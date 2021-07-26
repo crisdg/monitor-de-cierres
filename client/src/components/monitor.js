@@ -37,6 +37,7 @@ function TablaMonitor(props) {
             <th key="6">informe fact.</th>
             <th key="7">Cierre</th>
             <th key="8">Eliminar</th>
+            <th key="90">Info</th>
           </tr>
         </thead>
         <tbody className="monitor--table-body">
@@ -75,6 +76,13 @@ function TablaMonitor(props) {
                   <div className="monitor--eliminar-button">
                     <Link to={`/zona/${zona._id}`} data={zona}>
                       Eliminar
+                    </Link>
+                  </div>
+                </td>
+                <td key={key + 17}>
+                  <div className="monitor--eliminar-button">
+                    <Link to={`/zonaInfo/${zona._id}`} data={zona}>
+                      Info
                     </Link>
                   </div>
                 </td>

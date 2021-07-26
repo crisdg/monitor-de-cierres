@@ -12,6 +12,7 @@ const Zona = (props) => {
   const [tildadoDisabled, setTildadoDisabled] = useState();
   const [admDisabled, setAdmDisabled] = useState();
   const [factDisabled, setFactDisabled] = useState();
+  const [cierreTildado, setCierreTildado] = useState({});
 
   //verifica que haya props para evitar error en el render
   useEffect(() => {
@@ -20,11 +21,12 @@ const Zona = (props) => {
       await clienteAxios
         .get(url)
         .then((response) => {
+          console.log(response.data);
           setZona(response.data);
           setTildadoCheck(response.data.tildado);
           setAdmCheck(response.data.administracion);
           setFactCheck(response.data.facturacion);
-          setTildadoDisabled(response.data.tildado);
+          setTildadoDisabled(response.data.tildado.status);
           setAdmDisabled(response.data.administracion);
           setFactCheck(response.data.facturacion);
         })
@@ -48,6 +50,9 @@ const Zona = (props) => {
     tildado: zona.tildado,
     administracion: zona.administracion,
     facturacion: zona.facturacion,
+    cierreTildado: zona.cierreTildado,
+    cierreAdministracion: zona.cierreAdministracion,
+    cierreFacturacion: zona.cierreFacturacion,
   };
   //actualiza la info a la db, verifica la combinaciones de checkbox mediante If
   const updateData = async (e) => {
@@ -123,7 +128,7 @@ const Zona = (props) => {
     props.history.push("/");
     props.setConsultar(true);
   };
-
+  console.log(zona);
   return (
     <div className="container-fluid zona">
       <div className="zona-form--container">
@@ -141,6 +146,10 @@ const Zona = (props) => {
               disabled={tildadoDisabled}
               onChange={(e) => {
                 checkData.tildado = e.target.checked;
+                checkData.cierreTildado = {
+                  fechaCierre: Date.now(),
+                  usuarioCierre: props.userName,
+                };
 
                 if (tildadoCheck === false) {
                   setTildadoCheck(true);
@@ -165,6 +174,10 @@ const Zona = (props) => {
               disabled={admDisabled}
               onChange={(e) => {
                 checkData.administracion = e.target.checked;
+                checkData.cierreAdministracion = {
+                  fechaCierre: Date.now(),
+                  usuarioCierre: props.userName,
+                };
 
                 if (admCheck === false) {
                   setAdmCheck(true);
@@ -190,6 +203,10 @@ const Zona = (props) => {
               disabled={factDisabled}
               onChange={(e) => {
                 checkData.facturacion = e.target.checked;
+                checkData.cierreFacturacion = {
+                  fechaCierre: Date.now(),
+                  usuarioCierre: props.userName,
+                };
 
                 if (factCheck === false) {
                   setFactCheck(true);

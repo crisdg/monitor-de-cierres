@@ -7,6 +7,7 @@ import Zona from "./components/zona";
 import Login from "./components/login";
 import RegisterUser from "./components/registerUser";
 import NavBar from "./components/navbar";
+import ZonaInfo from "./components/zonaInfo";
 import { AuthContextProvider } from "./context/authContext";
 
 import "./App.css";
@@ -74,11 +75,27 @@ function App() {
             render={(props) => {
               return (
                 <Zona
+                  userName={userName}
                   data={zonas.filter(
                     (item) => item._id === props.match.params.id
                   )}
                   id={props.match.params.id}
                   setConsultar={setConsultar}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/zonaInfo/:id"
+            render={(props) => {
+              return (
+                <ZonaInfo
+                  userName={userName}
+                  data={zonas.filter(
+                    (item) => item._id === props.match.params.id
+                  )}
+                  id={props.match.params.id}
                 />
               );
             }}

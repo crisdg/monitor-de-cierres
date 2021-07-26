@@ -56,6 +56,18 @@ function NuevaZona(props) {
     tildado: false,
     administracion: false,
     facturacion: false,
+    cierreTildado: {
+      fechaCierre: null,
+      usuarioCierre: null,
+    },
+    cierreAdministracion: {
+      fechaCierre: null,
+      usuarioCierre: null,
+    },
+    cierreFacturacion: {
+      fechaCierre: null,
+      usuarioCierre: null,
+    },
   };
   return (
     <div className="container-fluid zona">

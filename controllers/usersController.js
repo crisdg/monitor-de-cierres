@@ -40,7 +40,7 @@ exports.loginUser = async (req, res) => {
         .json({ errorMessage: "ingrese todos los datos requeridos" });
 
     const existingUser = await Users.findOne({ user });
-    console.log(existingUser);
+
     if (!existingUser) {
       return res
         .status(401)
@@ -63,11 +63,6 @@ exports.loginUser = async (req, res) => {
 
     res
       .cookie("token", token, {
-        httpOnly: true,
-      })
-      .send();
-    res
-      .cookie("user", existingUser.user, {
         httpOnly: true,
       })
       .send();

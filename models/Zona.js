@@ -24,6 +24,36 @@ const ZonaSchema = new Schema({
     type: Boolean,
     trim: true,
   },
+  cierreTildado: {
+    fechaCierre: {
+      type: Date,
+      trim: true,
+    },
+    usuarioCierre: {
+      type: String,
+      trim: true,
+    },
+  },
+  cierreAdministracion: {
+    fechaCierre: {
+      type: Date,
+      trim: true,
+    },
+    usuarioCierre: {
+      type: String,
+      trim: true,
+    },
+  },
+  cierreFacturacion: {
+    fechaCierre: {
+      type: Date,
+      trim: true,
+    },
+    usuarioCierre: {
+      type: String,
+      trim: true,
+    },
+  },
 });
 
 module.exports = mongoose.model("Zona", ZonaSchema);
