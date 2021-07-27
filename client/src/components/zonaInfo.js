@@ -1,11 +1,16 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
 function ZonaInfo(props) {
   const data = props.data.map((item) => {
     return item;
   });
+
+  if (data.length === 0) {
+    return <p>...</p>;
+  }
+  console.log(data);
 
   const fechaCierreTildado = new Date(
     data[0].cierreTildado.fechaCierre
