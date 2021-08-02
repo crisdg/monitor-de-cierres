@@ -17,7 +17,9 @@ function App() {
   const [consultar, setConsultar] = useState(true);
   const [zonasFilter, setZonasFilter] = useState([]);
   const [date, setDate] = useState("");
-  const [userName, setUserName] = useState(window.localStorage.getItem("data"));
+  const [userName, setUserName] = useState(
+    window.sessionStorage.getItem("data")
+  );
 
   useEffect(() => {
     if (consultar) {
@@ -73,37 +75,53 @@ function App() {
             exact
             path="/zona/:id"
             render={(props) => {
-              return (
-                <Zona
-                  userName={userName}
-                  data={zonas.filter(
-                    (item) => item._id === props.match.params.id
-                  )}
-                  id={props.match.params.id}
-                  setConsultar={setConsultar}
-                />
-              );
+              if (!userName || userName === null) {
+                return <Login setUserName={setUserName} />;
+              } else {
+                return (
+                  <Zona
+                    userName={userName}
+                    data={zonas.filter(
+                      (item) => item._id === props.match.params.id
+                    )}
+                    id={props.match.params.id}
+                    setConsultar={setConsultar}
+                  />
+                );
+              }
             }}
           />
           <Route
             exact
             path="/zonaInfo/:id"
             render={(props) => {
-              return (
-                <ZonaInfo
-                  userName={userName}
-                  data={zonas.filter(
-                    (item) => item._id === props.match.params.id
-                  )}
-                  id={props.match.params.id}
-                />
-              );
+              if (!userName || userName === null) {
+                return <Login setUserName={setUserName} />;
+              } else {
+                return (
+                  <ZonaInfo
+                    userName={userName}
+                    data={zonas.filter(
+                      (item) => item._id === props.match.params.id
+                    )}
+                    id={props.match.params.id}
+                  />
+                );
+              }
             }}
           />
           <Route
             exact
             path="/nueva"
-            render={(props) => <NuevaZona setConsultar={setConsultar} />}
+            render={(props) => {
+              if (!userName || userName === null) {
+                return <Login setUserName={setUserName} />;
+              } else {
+                return (
+                  <NuevaZona userName={userName} setConsultar={setConsultar} />
+                );
+              }
+            }}
           />
           <Route
             exact
@@ -117,7 +135,7 @@ function App() {
           <Route
             exact
             path="/registrar"
-            component={() => {
+            component={(props) => {
               return <RegisterUser />;
             }}
           />

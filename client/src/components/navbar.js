@@ -13,7 +13,7 @@ function NavBar(props) {
     e.preventDefault();
     await clienteAxios.get("/logout");
     await getLoggedIn();
-    window.localStorage.removeItem("data");
+    window.sessionStorage.removeItem("data");
     props.setUserName(null);
   };
   return (

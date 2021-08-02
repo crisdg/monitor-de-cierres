@@ -22,7 +22,7 @@ const Login = (props) => {
       await clienteAxios.post("/login", loginData).then((res) => {
         const data = JSON.parse(res.config.data);
 
-        localStorage.setItem("data", data.user);
+        sessionStorage.setItem("data", data.user);
         props.setUserName(data.user);
       });
       history.push("/");

@@ -21,7 +21,6 @@ const Zona = (props) => {
       await clienteAxios
         .get(url)
         .then((response) => {
-          console.log(response.data);
           setZona(response.data);
           setTildadoCheck(response.data.tildado);
           setAdmCheck(response.data.administracion);
@@ -82,7 +81,7 @@ const Zona = (props) => {
       await clienteAxios
         .put(url, data)
         .then((res) => {
-          console.log(res, "modificado");
+          console.log("modificado");
         })
         .catch((error) => {
           console.log(error);
@@ -128,7 +127,7 @@ const Zona = (props) => {
     props.history.push("/");
     props.setConsultar(true);
   };
-  console.log(zona);
+
   return (
     <div className="container-fluid zona">
       <div className="zona-form--container">

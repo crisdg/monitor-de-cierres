@@ -8,7 +8,7 @@ exports.nuevoUser = async (req, res, next) => {
   try {
     await user.save();
     console.log(user, "desde save");
-    res.json({ mensaje: "user agregada correctamente" });
+    res.json({ mensaje: "user agregado correctamente" });
 
     //crear firma token
     const token = jwt.sign(

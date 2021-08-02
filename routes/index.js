@@ -19,7 +19,7 @@ module.exports = function () {
   //obtener usuarios
   router.get("/users", usersController.obtenerUsers);
   //crear usuario
-  router.post("/users", usersController.nuevoUser);
+  router.post("/users/registrar", usersController.nuevoUser);
   //login usuario
   router.post("/login", usersController.loginUser);
   router.get("/logout", usersController.logoutUser);
