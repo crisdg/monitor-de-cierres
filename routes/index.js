@@ -12,9 +12,9 @@ module.exports = function () {
   //obtener registro por id
   router.get("/zonas/:id", zonaController.obtenerZona);
   //actualizar registro
-  router.put("/zonas/:id", zonaController.actualizarZona);
+  router.put("/zonas/:id", auth, zonaController.actualizarZona);
   //eliminar registro
-  router.delete("/zonas/:id", zonaController.eliminarZona);
+  router.delete("/zonas/:id", auth, zonaController.eliminarZona);
 
   //obtener usuarios
   router.get("/users", usersController.obtenerUsers);
