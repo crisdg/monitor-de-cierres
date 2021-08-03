@@ -52,7 +52,7 @@ function ZonaInfo(props) {
         </button>
       </div>
 
-      <Table striped bordered size="sm">
+      <Table striped bordered size="sm" responsive>
         <thead>
           <tr>
             <td>tildado</td>

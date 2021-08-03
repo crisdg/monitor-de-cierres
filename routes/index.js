@@ -17,9 +17,9 @@ module.exports = function () {
   router.delete("/zonas/:id", auth, zonaController.eliminarZona);
 
   //obtener usuarios
-  router.get("/users", usersController.obtenerUsers);
+  router.get("/users", auth, usersController.obtenerUsers);
   //crear usuario
-  router.post("/users/registrar", usersController.nuevoUser);
+  router.post("/users/registrar", auth, usersController.nuevoUser);
   //login usuario
   router.post("/login", usersController.loginUser);
   router.get("/logout", usersController.logoutUser);

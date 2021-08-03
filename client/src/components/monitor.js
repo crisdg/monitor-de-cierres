@@ -26,7 +26,14 @@ function TablaMonitor(props) {
         </div>
       </div>
 
-      <Table striped bordered hover className="monitor--table">
+      <Table
+        striped
+        bordered
+        hover
+        className="monitor--table"
+        size="sm"
+        responsive
+      >
         <thead className="monitor--table-header">
           <tr>
             <th key="1">Fecha</th>
