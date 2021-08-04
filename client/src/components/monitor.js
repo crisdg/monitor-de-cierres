@@ -20,9 +20,7 @@ function TablaMonitor(props) {
           />
         </div>
         <div className="header--refresh-button">
-          <button className="refresh" onClick={refrescarConsulta}>
-            Refrescar
-          </button>
+          <button className="refresh" onClick={refrescarConsulta}></button>
         </div>
       </div>
 
@@ -58,19 +56,19 @@ function TablaMonitor(props) {
                   key={key + 12}
                   className={zona.tildado === true ? "true" : "false"}
                 >
-                  {zona.tildado === true ? "OK" : "X"}
+                  {zona.tildado === true ? " " : ""}
                 </td>
                 <td
                   key={key + 13}
                   className={zona.administracion === true ? "true" : "false"}
                 >
-                  {zona.administracion === true ? "OK" : "X"}
+                  {zona.administracion === true ? " " : ""}
                 </td>
                 <td
                   key={key + 14}
                   className={zona.facturacion === true ? "true" : "false"}
                 >
-                  {zona.facturacion === true ? "OK" : "X"}
+                  {zona.facturacion === true ? " " : ""}
                 </td>
                 <td key={key + 15}>
                   <div className="monitor--cierre-button">
@@ -87,7 +85,7 @@ function TablaMonitor(props) {
                   </div>
                 </td>
                 <td key={key + 17}>
-                  <div className="monitor--eliminar-button">
+                  <div className="monitor--info-button">
                     <Link to={`/zonaInfo/${zona._id}`} data={zona}>
                       Info
                     </Link>

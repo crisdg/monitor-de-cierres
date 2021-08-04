@@ -14,11 +14,17 @@
 }
 
 .monitor--table-body .true {
-  background-color: #81fca2;
+  background-image: url("https://icongr.am/fontawesome/check-circle.svg?size=30&color=31f247");
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 
 .monitor--table-body .false {
-  background-color: #ff6969;
+  background-image: url("https://icongr.am/fontawesome/times-circle.svg?size=30&color=ff3333");
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 
 .zona-form--container {
@@ -146,7 +152,7 @@
 .monitor--cierre-button {
   width: 70px;
   height: 30px;
-  background-color: #7c4dff;
+  background-color: #00c853;
   color: white;
   border-radius: 5px;
 }
@@ -164,11 +170,29 @@
 .monitor--eliminar-button {
   width: 70px;
   height: 30px;
-  background-color: red;
+  background-color: #d50000;
   color: white;
   border-radius: 5px;
 }
 
+.monitor--info-button {
+  width: 70px;
+  height: 30px;
+  font-weight: 500;
+  background-color: #00b0ff;
+  color: white;
+  border-radius: 5px;
+}
+.monitor--info-button a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+.monitor--info-button a:hover {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
 .monitor--eliminar-button a {
   color: white;
 }
@@ -178,9 +202,16 @@
   color: white;
 }
 .refresh {
-  width: 80px;
-  height: 40px;
-  background-color: lawngreen;
+  width: 34px;
+  height: 34px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: blue;
+  background-image: url("https://icongr.am/fontawesome/refresh.svg?size=25&color=fafcff");
+  background-size: auto;
+  background-repeat: no-repeat;
+
+  background-position: center;
   border-radius: 20px;
 }
 
