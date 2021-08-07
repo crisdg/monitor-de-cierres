@@ -6,7 +6,7 @@ function NuevaZona(props) {
   const [zona, setZona] = useState({});
   const [nZona, setNzona] = useState("");
   const [camp, setCamp] = useState("");
-  const [ruta, setRuta] = useState("");
+
   const handleBack = (e) => {
     e.preventDefault();
     props.history.push("/");

@@ -12,7 +12,6 @@ const Zona = (props) => {
   const [tildadoDisabled, setTildadoDisabled] = useState();
   const [admDisabled, setAdmDisabled] = useState();
   const [factDisabled, setFactDisabled] = useState();
-  const [cierreTildado, setCierreTildado] = useState({});
 
   //verifica que haya props para evitar error en el render
   useEffect(() => {
@@ -21,6 +20,7 @@ const Zona = (props) => {
       await clienteAxios
         .get(url)
         .then((response) => {
+          console.log(response.data);
           setZona(response.data);
           setTildadoCheck(response.data.tildado);
           setAdmCheck(response.data.administracion);
@@ -45,7 +45,9 @@ const Zona = (props) => {
   //construye objeto modelo para mutar y enviar a db segun cambien los checkbox
   const checkData = {
     fecha: zona.fecha,
+    campaña: zona.campaña,
     zona: zona.zona,
+    ruta: zona.ruta,
     tildado: zona.tildado,
     administracion: zona.administracion,
     facturacion: zona.facturacion,

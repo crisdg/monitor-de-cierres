@@ -18,6 +18,8 @@ module.exports = function () {
 
   //obtener usuarios
   router.get("/users", auth, usersController.obtenerUsers);
+  //buscar zona
+  router.get("/busqueda", zonaController.busquedaZona);
   //crear usuario
   router.post("/users/registrar", auth, usersController.nuevoUser);
   //login usuario

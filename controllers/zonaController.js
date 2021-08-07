@@ -36,7 +36,17 @@ exports.obtenerZona = async (req, res, next) => {
     next();
   }
 };
+//buscar zona
+exports.busquedaZona = async (req, res, next) => {
+  try {
+    const zona = await Zona.find({ zona: req.body.zona }).exec();
 
+    res.json(zona);
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
 //actualizar po id
 exports.actualizarZona = async (req, res, next) => {
   try {
@@ -55,6 +65,7 @@ exports.actualizarZona = async (req, res, next) => {
 };
 
 //eliminar zona
+
 exports.eliminarZona = async (req, res, next) => {
   try {
     await Zona.findByIdAndDelete({ _id: req.params.id });
