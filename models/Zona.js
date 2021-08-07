@@ -6,8 +6,17 @@ const ZonaSchema = new Schema({
     type: String,
     trim: true,
   },
+  campaña: {
+    type: String,
+    trim: true,
+  },
 
   zona: {
+    type: String,
+    trim: true,
+  },
+
+  ruta: {
     type: String,
     trim: true,
   },

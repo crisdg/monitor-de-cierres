@@ -36,7 +36,9 @@ function TablaMonitor(props) {
           <tr>
             <th key="1">Fecha</th>
             <th key="2">Orden</th>
+            <th key="54">Año/Camp.</th>
             <th key="3">Zona</th>
+            <th key="55">Ruta</th>
             <th key="4">cierre tildado</th>
             <th key="5">informe adm.</th>
             <th key="6">informe fact.</th>
@@ -51,7 +53,9 @@ function TablaMonitor(props) {
               <tr key={key + 23}>
                 <td key={key + 9}>{zona.fecha}</td>
                 <td key={key + 10}>{key}</td>
+                <td>{zona.campaña}</td>
                 <td key={key + 11}>{zona.zona}</td>
+                <td>{zona.ruta}</td>
                 <td
                   key={key + 12}
                   className={zona.tildado === true ? "true" : "false"}

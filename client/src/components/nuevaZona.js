@@ -4,18 +4,20 @@ import clienteAxios from "../config/axios";
 
 function NuevaZona(props) {
   const [zona, setZona] = useState({});
-
+  const [nZona, setNzona] = useState("");
+  const [camp, setCamp] = useState("");
+  const [ruta, setRuta] = useState("");
   const handleBack = (e) => {
     e.preventDefault();
     props.history.push("/");
     return null;
   };
 
-  const guardarZona = (e) => {
+  const guardarZona = async (e) => {
     e.preventDefault();
     setZona(nuevaZona);
 
-    clienteAxios
+    await clienteAxios
       .post("/zonas", zona)
       .then((res) => {
         props.setConsultar(true);
@@ -29,12 +31,23 @@ function NuevaZona(props) {
 
   const handleChange = (e) => {
     e.preventDefault();
-    nuevaZona.zona = e.target.value;
+    setNzona(e.target.value);
     setZona(nuevaZona);
   };
 
-  const handleDate = (e) => {
+  const handleCampaña = async (e) => {
     e.preventDefault();
+
+    setCamp(e.target.value);
+    await setZona(nuevaZona);
+  };
+
+  const handleRuta = async (e) => {
+    nuevaZona.ruta = e.target.value;
+    await setZona(nuevaZona);
+  };
+
+  const handleDate = (e) => {
     nuevaZona.fecha = e.target.value;
 
     setZona(nuevaZona);
@@ -52,7 +65,9 @@ function NuevaZona(props) {
 
   let nuevaZona = {
     fecha: today,
-    zona: "",
+    campaña: camp,
+    zona: nZona,
+    ruta: "",
     tildado: false,
     administracion: false,
     facturacion: false,
@@ -82,6 +97,18 @@ function NuevaZona(props) {
             onChange={handleDate}
             className="zona-form--input"
           />
+          <label htmlFor="campaña">Campaña</label>
+          <select
+            name="campaña"
+            id="campaña"
+            onChange={handleCampaña}
+            value={camp}
+          >
+            <option value="202101">202101</option>
+            <option value="202102">202102</option>
+            <option value="202103">202103</option>
+            <option value="202104">202104</option>
+          </select>
           <label htmlFor="zona">Zona</label>
           <input
             type="text"
@@ -92,6 +119,17 @@ function NuevaZona(props) {
             pattern="^[0-9]+"
             className="zona-form--input"
             onChange={handleChange}
+            required
+          />
+          <label htmlFor="ruta">ruta</label>
+          <input
+            type="text"
+            id="ruta"
+            minLength="3"
+            maxLength="3"
+            pattern="^[0-9]+"
+            className="zona-form--input"
+            onChange={handleRuta}
             required
           />
           <input
