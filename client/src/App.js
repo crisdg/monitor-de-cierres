@@ -8,6 +8,7 @@ import Login from "./components/login";
 import RegisterUser from "./components/registerUser";
 import NavBar from "./components/navbar";
 import ZonaInfo from "./components/zonaInfo";
+import Busqueda from "./components/busqueda";
 import { AuthContextProvider } from "./context/authContext";
 
 import "./App.css";
@@ -137,6 +138,13 @@ function App() {
             path="/registrar"
             component={(props) => {
               return <RegisterUser />;
+            }}
+          />
+          <Route
+            exact
+            path="/busqueda"
+            component={() => {
+              return <Busqueda />;
             }}
           />
         </Switch>

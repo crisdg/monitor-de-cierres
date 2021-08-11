@@ -39,9 +39,10 @@ exports.obtenerZona = async (req, res, next) => {
 //buscar zona
 exports.busquedaZona = async (req, res, next) => {
   try {
-    const zona = await Zona.find({ zona: req.body.zona }).exec();
+    const data = await Zona.find({ zona: req.body.zona });
 
-    res.json(zona);
+    res.json(data);
+    console.log("req", req, "res", res);
   } catch (error) {
     console.log(error);
     next();

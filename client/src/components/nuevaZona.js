@@ -87,7 +87,7 @@ function NuevaZona(props) {
   return (
     <div className="container-fluid zona">
       <div className="zona-form--container">
-        <form action="post" className="" onSubmit={guardarZona}>
+        <form method="post" className="" onSubmit={guardarZona}>
           <label htmlFor="fecha">Fecha</label>
           <input
             type="date"

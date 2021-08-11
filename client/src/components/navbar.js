@@ -30,6 +30,7 @@ function NavBar(props) {
                   Logout
                 </Nav.Link>
               )}
+              {loggedIn === true && <Nav.Link href="busqueda">Buscar</Nav.Link>}
             </Nav>
           </Container>
         </Navbar>
