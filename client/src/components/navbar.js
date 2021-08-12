@@ -22,14 +22,14 @@ function NavBar(props) {
         <Container>
           <Navbar.Brand href="/">Monitor</Navbar.Brand>
           <Nav className="me-auto">
-            {loggedIn === false && <Link to="/login">Login</Link>}
+            {loggedIn === false && <Nav.Link href="/login">Login</Nav.Link>}
             {loggedIn === true && <Navbar.Text>{props.user}</Navbar.Text>}
             {loggedIn === true && (
-              <Nav.Link to="/logout" onClick={logout}>
+              <Nav.Link href="/logout" onClick={logout}>
                 Logout
               </Nav.Link>
             )}
-            {loggedIn === true && <Link to="/busqueda">Buscar</Link>}
+            {loggedIn === true && <Nav.Link href="/busqueda">Buscar</Nav.Link>}
           </Nav>
         </Container>
       </Navbar>
