@@ -136,14 +136,14 @@ function App() {
           <Route
             exact
             path="/registrar"
-            component={(props) => {
+            render={(props) => {
               return <RegisterUser />;
             }}
           />
           <Route
             exact
             path="/busqueda"
-            component={() => {
+            render={() => {
               return <Busqueda />;
             }}
           />
