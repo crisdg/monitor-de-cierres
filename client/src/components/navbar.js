@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -18,25 +18,21 @@ function NavBar(props) {
   };
   return (
     <div>
-      <Router>
-        <Navbar bg="light" variant="light">
-          <Container>
-            <Navbar.Brand href="/">Monitor</Navbar.Brand>
-            <Nav className="me-auto">
-              {loggedIn === false && <Nav.Link href="/login">Login</Nav.Link>}
-              {loggedIn === true && <Navbar.Text>{props.user}</Navbar.Text>}
-              {loggedIn === true && (
-                <Nav.Link href="/logout" onClick={logout}>
-                  Logout
-                </Nav.Link>
-              )}
-              {loggedIn === true && (
-                <Nav.Link href="/busqueda">Buscar</Nav.Link>
-              )}
-            </Nav>
-          </Container>
-        </Navbar>
-      </Router>
+      <Navbar bg="light" variant="light">
+        <Container>
+          <Navbar.Brand href="/">Monitor</Navbar.Brand>
+          <Nav className="me-auto">
+            {loggedIn === false && <Link to="/login">Login</Link>}
+            {loggedIn === true && <Navbar.Text>{props.user}</Navbar.Text>}
+            {loggedIn === true && (
+              <Nav.Link to="/logout" onClick={logout}>
+                Logout
+              </Nav.Link>
+            )}
+            {loggedIn === true && <Link to="/busqueda">Buscar</Link>}
+          </Nav>
+        </Container>
+      </Navbar>
     </div>
   );
 }
